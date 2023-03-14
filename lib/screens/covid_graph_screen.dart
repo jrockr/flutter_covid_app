@@ -7,8 +7,10 @@ final Logger _logger = Logger();
 
 class CovidDataGraphScreen extends StatefulWidget {
   final String country;
+  final bool isDarkModeEnabled;
 
-  const CovidDataGraphScreen({super.key, required this.country});
+  const CovidDataGraphScreen(
+      {super.key, required this.country, required this.isDarkModeEnabled});
 
   @override
   CovidDataGraphScreenState createState() => CovidDataGraphScreenState();
@@ -58,10 +60,12 @@ class CovidDataGraphScreenState extends State<CovidDataGraphScreen> {
 
   Widget widgetChart() {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        border: Border.all(),
-      ),
+      padding: const EdgeInsets.all(3.0),
+      color: widget.isDarkModeEnabled
+          ? Colors.blueGrey[100]
+          : Colors.deepOrange[
+              100], // Adjust the color based on the current theme mode,
+      // Adjust the color based on the current theme mode
       child: Column(
         children: [
           DropdownButton<String>(

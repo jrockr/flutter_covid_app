@@ -62,10 +62,10 @@ class HomePageState extends State<HomePage> {
   Widget widgetCountrySearchBox() {
     return Container(
       width: 500,
-      height: 200,
+      height: 250,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        border: Border.all(),
+        // border: Border.all(),
       ),
       child: Column(children: [
         TypeAheadFormField(
@@ -102,6 +102,7 @@ class HomePageState extends State<HomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => CovidDataGraphScreen(
+                            isDarkModeEnabled: isDarkModeEnabled,
                             country: _selectedCountry.toString())),
                   );
                 }
@@ -118,6 +119,7 @@ class HomePageState extends State<HomePage> {
             onChanged: (value) {
               setState(() {
                 widget.toggleTheme();
+                isDarkModeEnabled = !isDarkModeEnabled;
               });
             },
           ),
