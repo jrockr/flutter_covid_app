@@ -7,9 +7,10 @@ import 'package:logger/logger.dart';
 final Logger _logger = Logger();
 
 class HomePage extends StatefulWidget {
+  final Function toggleTheme;
   final CountryViewModel viewModel = CountryViewModel();
 
-  HomePage({super.key});
+  HomePage({super.key, required this.toggleTheme});
 
   @override
   HomePageState createState() => HomePageState();
@@ -17,6 +18,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   String? _selectedCountry;
+  bool isDarkModeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +62,7 @@ class HomePageState extends State<HomePage> {
   Widget widgetCountrySearchBox() {
     return Container(
       width: 500,
-      height: 150,
+      height: 200,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
         border: Border.all(),
@@ -106,6 +108,20 @@ class HomePageState extends State<HomePage> {
               : null,
           child: const Text('Next'),
         ),
+        const SizedBox(
+          height: 15,
+        ),
+        Center(
+          child: SwitchListTile(
+            title: const Text('Enable Dark Mode'),
+            value: isDarkModeEnabled,
+            onChanged: (value) {
+              setState(() {
+                widget.toggleTheme();
+              });
+            },
+          ),
+        )
       ]),
     );
   }
