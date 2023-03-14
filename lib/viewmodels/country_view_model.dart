@@ -55,6 +55,15 @@ class CountryViewModel extends ChangeNotifier {
         .toList();
   }
 
+  List<Map> getCountries() {
+    return _countries
+        .map((country) => {
+              "name": country.country,
+              "slug": country.slug,
+            })
+        .toList();
+  }
+
   void setSelectedCountry(String country) {
     _selectedCountrySlug = country;
     notifyListeners();
